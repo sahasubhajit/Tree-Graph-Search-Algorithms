@@ -1,7 +1,5 @@
 #Simple python code to push and pop operation in a priority queue or min-heap
-#It is an Arrey implimentation of heap (complete binary tree)
-
-
+#It is an arrey implimentation of heap (complete binary tree) i.e. i-th term in the array has left child at 2*i+1, right child at 2*i+2 index of the array
 
 
 
@@ -14,7 +12,7 @@ def min_heap_push(heap, node):
     current_node = heap[current_index]
     parent_index = int(current_index/2)
     parent_node = heap[parent_index]
-    while current_node < parent_node:      #Makes the parent lower value of the current node 
+    while current_node < parent_node:      #Makes the parent lower value than the current node by replacing
       heap[parent_index] = current_node
       heap[current_index] = parent_node
       current_index = parent_index
@@ -33,10 +31,6 @@ def min_heap_push(heap, node):
     
     
     
-    
-    
-    
-    
 def min_heap_pop(heap):
     poped = heap[0]
     current_index = 0
@@ -46,15 +40,15 @@ def min_heap_pop(heap):
     while True:                           #recursively update the min heap
       #print(heap)
 
-      if 2*current_index + 1 < len(heap):
+      if 2*current_index + 1 < len(heap):    
         child_index_1 = 2*current_index + 1
-        child_1 = heap[child_index_1]
+        child_1 = heap[child_index_1]    #create left child
 
-        if 2*current_index + 2 < len(heap):
+        if 2*current_index + 2 < len(heap):    #create right child if exists, may not exist as it is complete binary tree
           child_index_2 = 2*current_index + 2
-          child_2 = heap[child_index_2]
+          child_2 = heap[child_index_2]        
 
-          if child_1 < child_2:
+          if child_1 < child_2:    #if right child exist then make their minimum as the child to compare with the current node else simply make the left child as comparing child
             child = child_1
             child_index = child_index_1
           else:
@@ -91,7 +85,7 @@ if __name__ == '__main__':
 	  heap = min_heap_push(heap, List[i])
 	  print(heap)
 	  
-	#Pop in a heap from a given list to create a heap  
+	#Pop all the elements from the heap
 	count = 0
 	initial_heap_length = len(heap)
 	print("\n Should return the values in increasing order as it is a min heap \n")
@@ -99,8 +93,3 @@ if __name__ == '__main__':
 	  heap, poped = min_heap_pop(heap)
 	  print(poped)
 	  count += 1  
-	  
-
-    
-    
-    
