@@ -1,7 +1,3 @@
-#Simple python code to push and pop operation in a priority queue or min-heap
-#It is an arrey implimentation of heap (complete binary tree) i.e. i-th term in the array has left child at 2*i+1, right child at 2*i+2 index of the array
-
-
 
 def min_heap_push(heap, node):
   heap.append(node)
@@ -34,39 +30,42 @@ def min_heap_pop(heap):
     current_index = 0
     current_node = heap[len(heap)-1]
     heap = heap[:len(heap)-1]
-    heap[0] = current_node
-    while True:                           #recursively update the min heap
-      #print(heap)
+    if len(heap) == 0:
+      return heap, poped
+    else:
+      heap[0] = current_node
+      while True:                           #recursively update the min heap
+        #print(heap)
 
-      if 2*current_index + 1 < len(heap):    
-        child_index_1 = 2*current_index + 1
-        child_1 = heap[child_index_1]    #create left child
+        if 2*current_index + 1 < len(heap):    
+          child_index_1 = 2*current_index + 1
+          child_1 = heap[child_index_1]    #create left child
 
-        if 2*current_index + 2 < len(heap):    #create right child if exists, may not exist as it is complete binary tree
-          child_index_2 = 2*current_index + 2
-          child_2 = heap[child_index_2]        
+          if 2*current_index + 2 < len(heap):    #create right child if exists, may not exist as it is complete binary tree
+            child_index_2 = 2*current_index + 2
+            child_2 = heap[child_index_2]        
 
-          if list(child_1.values())[0]  < list(child_2.values())[0]:    #if right child exist then make their minimum as the child to compare with the current node else simply make the left child as comparing child
-            child = child_1
-            child_index = child_index_1
+            if list(child_1.values())[0]  < list(child_2.values())[0]:    #if right child exist then make their minimum as the child to compare with the current node else simply make the left child as comparing child
+              child = child_1
+              child_index = child_index_1
+            else:
+              child = child_2
+              child_index = child_index_2
           else:
-            child = child_2
-            child_index = child_index_2
-        else:
-            child = child_1
-            child_index = child_index_1
-        if list(child.values())[0] < list(current_node.values())[0]:
-          temp = child
-          temp_index = current_index
-          heap[child_index] = current_node
-          current_index = child_index
-          heap[temp_index] = temp
+              child = child_1
+              child_index = child_index_1
+          if list(child.values())[0] < list(current_node.values())[0]:
+            temp = child
+            temp_index = current_index
+            heap[child_index] = current_node
+            current_index = child_index
+            heap[temp_index] = temp
+          else:
+            break
         else:
           break
-      else:
-        break
 
-    return heap, poped
+      return heap, poped
     
     
     
@@ -91,4 +90,4 @@ if __name__ == '__main__':
   while count < initial_heap_length - 1:
     heap, poped = min_heap_pop(heap)
     print(poped)
-    count += 1 
+    count += 1  
