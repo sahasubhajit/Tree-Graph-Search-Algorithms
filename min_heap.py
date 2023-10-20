@@ -71,8 +71,6 @@ def min_heap_pop(heap):
     
     
     
-    
-    
 if __name__ == '__main__':
           #Push in a heap from a given list to create a heap
   heap = []
